@@ -19,6 +19,8 @@ jobs:
       - image: circleci/node:current
     steps:
       - checkout
+      - git config --global user.email "gmcnally.dev@gmail.com"
+      - git config --global user.name "Grant McNally"
       - run: npm i
       - run: npm run deploy
 workflows:
