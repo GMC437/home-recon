@@ -1,14 +1,20 @@
-orbs:
-  node: circleci/node@2.0.2
-
 version: 2.1
-
+jobs:
+  build:
+    - image: circleci/node:8.9
+  steps:
+    - checkout
+    - run: yarn
+    - run: yarn build
+  test:
+    - image: circleci/node:8.9
+  steps:
+    - checkout
+    - run: yarn
+    - run: yarn test
 workflows:
-  matrix-tests:
+  version: 2.1
+  build-test:
     jobs:
-      - node/test:
-          version: 13.11.0
-      - node/test:
-          version: 12.16.0
-      - node/test:
-          version: 10.19.0
+      - build
+      - test
