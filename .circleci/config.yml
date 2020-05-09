@@ -14,9 +14,24 @@ jobs:
       - checkout
       - run: npm i
       - run: npm test
+  deploy:
+    docker:
+      - image: circleci/node:current
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm run deploy
 workflows:
   version: 2.1
   build-test:
     jobs:
       - build
       - test
+      - deploy:
+         requires:
+            - build
+            - test
+          filters:
+            branches:
+              only:
+                - master
