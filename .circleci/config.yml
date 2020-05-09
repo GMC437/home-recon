@@ -23,15 +23,15 @@ jobs:
       - run: npm run deploy
 workflows:
   version: 2.1
-  build-test:
+  build-test-deploy:
     jobs:
       - build
       - test
       - deploy:
-         requires:
-            - build
-            - test
-          filters:
-            branches:
-              only:
-                - master
+        requires:
+          - build
+          - test
+        filters:
+          branches:
+            only:
+              - master
